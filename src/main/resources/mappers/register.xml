@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.yunsu.dao.RegisterUserDao">
+    <insert id="insertRegisterUser" parameterType="com.yunsu.domain.Register">
+        insert into register(uname,upassword,address,qq) VALUES (#{uname},#{upassword},#{address},#{qq})
+    </insert>
+
+    <select id="findUserByName" parameterType="String" resultType="com.yunsu.domain.Register">
+        SELECT * FROM register WHERE uname=#{uname}
+    </select>
+
+    <insert id="insertAddUser" parameterType="com.yunsu.domain.User">
+        INSERT INTO user(uname,sex,birth,telephone,email,address,remark) VALUES (#{uname},#{sex},#{birth},#{telephone},#{email},#{address},#{remark})
+    </insert>
+
+    <select id="findAll" resultType="com.yunsu.domain.User">
+        SELECT * FROM user
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="com.yunsu.domain.User">
+        SELECT * FROM user WHERE uname = #{uname}
+    </select>
+
+    <update id="updateUser" parameterType="com.yunsu.domain.User">
+        UPDATE user SET sex=#{sex},birth=#{birth},telephone=#{telephone},email=#{email},address=#{address},remark=#{remark} where uname=#{uname}
+    </update>
+</mapper>
